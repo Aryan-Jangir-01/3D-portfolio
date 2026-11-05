@@ -70,14 +70,14 @@ export const About: React.FC = () => {
             </div>
 
             <h3 className="text-2xl font-bold font-display text-white mb-4">
-              Engineering with precision, designing with empathy.
+              Building Intelligent, Secure & Impactful Technology.
             </h3>
 
             <p className="text-zinc-300 text-sm leading-relaxed mb-4">
-              I am a Full-Stack Engineer and Creative Developer passionate about creating robust systems that scale seamlessly and user interfaces that feel intuitive and responsive.
+              I am a third-year B.Tech student specializing in <strong className="text-white">Artificial Intelligence and Data Science</strong> at <strong className="text-white">Arya College of Engineering & IT, Jaipur</strong> (Class of 2028). Passionate technology enthusiast, developer, and aspiring AI/ML and Cybersecurity professional.
             </p>
             <p className="text-zinc-400 text-sm leading-relaxed">
-              Whether building AI-driven agentic platforms, architecting low-latency microservices, or tuning 60fps animations, I strive for clean architecture, uncompromising performance, and bulletproof code quality.
+              From engineering our <strong className="text-white">AI-Based Internship Recommendation Engine for Smart India Hackathon (SIH 2025)</strong> to building secure fintech platforms like CryptoPay, NoteShare, MindEase, and computer vision systems, I thrive on participating in hackathons, learning emerging technologies, and solving real-world challenges through creative coding.
             </p>
           </div>
 

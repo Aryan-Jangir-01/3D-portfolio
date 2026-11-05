@@ -32,7 +32,7 @@ export interface Experience {
   company: string;
   period: string;
   location: string;
-  type: 'Full-time' | 'Contract' | 'Open Source' | 'Freelance' | 'Education';
+  type: 'Full-time' | 'Contract' | 'Open Source' | 'Freelance' | 'Education' | 'Hackathon' | 'Projects';
   description: string[];
   technologies: string[];
   link?: string;

@@ -55,23 +55,27 @@ export const AryanBot: React.FC<AryanBotProps> = ({ isOpen, onClose, onOpen }) =
   const generateAnswer = (query: string): string => {
     const q = query.toLowerCase();
 
-    if (q.includes('stack') || q.includes('technolog') || q.includes('skills')) {
-      return `Aryan specializes in Full-Stack development and AI systems:\n• Frontend: React, Next.js, TypeScript, Tailwind CSS, Three.js\n• Backend: Node.js, Express, Python (FastAPI), PostgreSQL, Redis\n• Cloud & DevOps: Docker, AWS, Cloudflare, CI/CD\n• AI/ML: LangChain, Vector DBs, Prompt Engineering.`;
+    if (q.includes('college') || q.includes('education') || q.includes('degree') || q.includes('study') || q.includes('arya')) {
+      return `Aryan is a 3rd-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur, with an expected graduation in 2028.`;
     }
 
-    if (q.includes('hire') || q.includes('why') || q.includes('experience')) {
-      return `Here is why teams love working with Aryan:\n1. 3+ years experience engineering resilient systems with 99+ Lighthouse performance scores.\n2. Strong architectural ownership from system design to pixel-perfect UI execution.\n3. Passion for clean, tested code and fast delivery without tech debt.\n4. Available for full-time roles & high-impact contracts!`;
+    if (q.includes('stack') || q.includes('technolog') || q.includes('skills') || q.includes('language')) {
+      return `Aryan's technical arsenal includes:\n• Languages: Python, C, C++, Java, JavaScript\n• Frontend: React.js, Tailwind CSS, HTML5, CSS3\n• Backend & APIs: FastAPI, Node.js, Express.js\n• Databases: MongoDB, Firebase, SQL\n• Domains & Tools: AI/ML, Deep Learning, Cybersecurity fundamentals, Git, GitHub, Linux, Arduino IoT.`;
     }
 
-    if (q.includes('project') || q.includes('work') || q.includes('portfolio')) {
-      return `Aryan has built several flagship projects:\n1. NexusAI: Autonomous multi-agent workspace with streaming SSE.\n2. HyperForge: Interactive cloud topology visualizer that generates Terraform code.\n3. Chronos OS: In-browser UNIX desktop with virtual filesystem.\nCheck out the Featured Creations section above for complete case studies!`;
+    if (q.includes('hire') || q.includes('why') || q.includes('about') || q.includes('goal')) {
+      return `Aryan Jangir is an ambitious AI & Data Science engineer from Arya College, Jaipur (Class of 2028). He is passionate about building innovative, secure, and intelligent solutions, competing in national hackathons like SIH 2025, and eager to contribute to high-impact software engineering roles.`;
+    }
+
+    if (q.includes('project') || q.includes('work') || q.includes('sih') || q.includes('hackathon')) {
+      return `Aryan has engineered several impressive projects:\n1. 🏆 AI Internship Recommendation Engine (Smart India Hackathon - SIH 2025)\n2. 🔐 CryptoPay - Secure digital cryptocurrency payment platform\n3. 🧠 MindEase - AI mental wellness & sentiment analysis companion\n4. 📚 NoteShare - Collaborative student academic repository\n5. 👁️ Face Age Analysis - Computer Vision CNN deep learning model\n6. 🌱 Arduino Soil Moisture Detection - Smart agricultural IoT system\nExplore the Projects section for full interactive details!`;
     }
 
     if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('hire') || q.includes('call')) {
-      return `You can reach Aryan directly at:\n📧 Email: ${portfolioData.email}\n💼 LinkedIn: ${portfolioData.linkedin}\n🐙 GitHub: ${portfolioData.github}\nHe typically responds within 24 hours!`;
+      return `You can reach Aryan directly at:\n📧 Email: ${portfolioData.email}\n💼 LinkedIn: ${portfolioData.linkedin}\n🐙 GitHub: ${portfolioData.github}\nHe is actively open to collaborations, hackathons, and high-impact roles!`;
     }
 
-    return `Aryan is a passionate Full-Stack Engineer and Creative Developer based in India. He focuses on building high-performance web applications and resilient systems. Feel free to reach out to him directly at ${portfolioData.email}!`;
+    return `Aryan Jangir is an AI & Data Science undergrad at Arya College of Engineering & IT, Jaipur (2028). He specializes in AI/ML, Full-Stack development, and Cybersecurity. Feel free to ask about his SIH 2025 hackathon project, his skills, or reach out at ${portfolioData.email}!`;
   };
 
   const handleSend = (textToSend?: string) => {

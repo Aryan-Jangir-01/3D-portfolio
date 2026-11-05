@@ -75,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot }) => {
             Open to High-Impact Roles & Collaborations
           </span>
           <span className="hidden sm:inline-block text-[11px] px-2 py-0.5 rounded bg-white/10 text-zinc-400">
-            2026 Ready
+            Arya College • 2028
           </span>
         </div>
 

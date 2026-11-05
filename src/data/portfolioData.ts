@@ -3,188 +3,207 @@ import { PortfolioData } from '../types';
 export const portfolioData: PortfolioData = {
   name: "Aryan Jangir",
   handle: "aryanjangir",
-  title: "Full-Stack Engineer & Creative Developer",
+  title: "AI & Data Science Student | Full-Stack & Cybersecurity Enthusiast",
   roles: [
-    "Full-Stack Architect",
-    "Creative Web Engineer",
-    "AI Systems Enthusiast",
-    "Performance Optimization Geek"
+    "AI & Data Science Undergrad (Class of 2028)",
+    "Full-Stack Web Developer",
+    "AI/ML & Deep Learning Explorer",
+    "Cybersecurity Fundamentals Enthusiast",
+    "Smart India Hackathon (SIH 2025) Innovator"
   ],
-  location: "India (IST)",
+  location: "Jaipur, India (Arya College of Engineering & IT)",
   timezone: "Asia/Kolkata",
   email: "aryanjangir0805@gmail.com",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  github: "https://github.com/aryanjangir",
+  linkedin: "https://linkedin.com/in/aryan-jangir",
   twitter: "https://twitter.com",
-  bio: "I design and build ultra-responsive, resilient digital experiences and scalable backends. Blending high-performance architecture with cutting-edge visual craft.",
+  bio: "Third-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur (Graduation 2028). Passionate developer, hackathon enthusiast, and aspiring AI/ML & Cybersecurity professional building intelligent, secure, and user-friendly applications.",
   
   aboutHighlights: [
     {
-      label: "Code Crafting",
-      value: "3+ Years",
-      subtext: "Delivering modern web & systems",
+      label: "College & Specialization",
+      value: "Arya College",
+      subtext: "B.Tech in AI & Data Science (Jaipur)",
       icon: "Code2"
     },
     {
-      label: "Projects Shipped",
-      value: "20+",
-      subtext: "From concept to production",
+      label: "Graduation Year",
+      value: "2028",
+      subtext: "Currently in 3rd Year (B.Tech)",
       icon: "Rocket"
     },
     {
-      label: "Performance Benchmark",
-      value: "99+",
-      subtext: "Lighthouse core web vitals",
+      label: "National Hackathons",
+      value: "SIH 2025",
+      subtext: "Smart India Hackathon Competitor",
       icon: "Zap"
     },
     {
-      label: "Problem Solving",
-      value: "500+",
-      subtext: "DSA & Algorithmic challenges",
+      label: "Core Specializations",
+      value: "AI & Security",
+      subtext: "AI/ML, Web & Cybersecurity",
       icon: "Brain"
     }
   ],
 
   philosophies: [
-    "Performance is not an afterthought; it's a fundamental feature.",
-    "User interfaces should feel responsive, alive, and effortless.",
-    "Clean, maintainable code scales teams just as much as systems."
+    "Build with intelligence: AI and automation should solve genuine real-world friction.",
+    "Security is non-negotiable: Software must be robust, reliable, and secure by design.",
+    "Learn, iterate, and compete: Hackathons and curiosity push engineering boundaries."
   ],
 
   skills: [
     {
-      name: "Frontend Mastery",
+      name: "Programming Languages",
+      icon: "Code2",
+      skills: [
+        { name: "Python", level: 92, description: "AI/ML, FastAPI, Automation, Scripting & Data Handling" },
+        { name: "C / C++", level: 86, description: "DSA, Embedded Systems, Hardware & Performance" },
+        { name: "Java", level: 84, description: "OOP Architecture, Data Structures & Core Principles" },
+        { name: "JavaScript", level: 88, description: "ES6+, Async Programming, DOM & Web APIs" }
+      ]
+    },
+    {
+      name: "Web & Full-Stack",
       icon: "Layout",
       skills: [
-        { name: "React / Next.js", level: 95, description: "SSR, Server Components, Hooks, State Management" },
-        { name: "TypeScript", level: 90, description: "Type-safety, Generics, Complex type architectures" },
-        { name: "Tailwind CSS", level: 96, description: "Design systems, Responsive layouts, Animations" },
-        { name: "Three.js / Canvas", level: 80, description: "Interactive 3D particle systems & physics" },
-        { name: "Framer Motion", level: 88, description: "Gestures, Orchestrated micro-interactions" }
+        { name: "React.js", level: 90, description: "Modern Component Architecture, Hooks, Interactive SPAs" },
+        { name: "Tailwind CSS", level: 94, description: "Futuristic Glassmorphism, Responsive Design & Styling" },
+        { name: "Node.js", level: 85, description: "Server-side Runtime, NPM Ecosystem, REST APIs" },
+        { name: "HTML5 & CSS3", level: 92, description: "Semantic Markup, Modern Flexbox/Grid Layouts, Animations" }
       ]
     },
     {
-      name: "Backend & Systems",
+      name: "Backend & Databases",
       icon: "Server",
       skills: [
-        { name: "Node.js / Express", level: 92, description: "REST APIs, Event-driven architecture" },
-        { name: "Python / FastAPI", level: 85, description: "Async microservices & data processing" },
-        { name: "PostgreSQL & Prisma", level: 88, description: "Relational modeling, Indexing, Query optimization" },
-        { name: "MongoDB & Redis", level: 86, description: "Caching, Pub/Sub, Document storage" },
-        { name: "GraphQL & gRPC", level: 82, description: "Efficient API communication protocols" }
+        { name: "FastAPI", level: 88, description: "High-performance Async Python APIs & AI Model Serving" },
+        { name: "Express.js", level: 86, description: "RESTful Web Services, Middleware & Routing" },
+        { name: "MongoDB", level: 85, description: "NoSQL Document Storage, Collections & Aggregation" },
+        { name: "Firebase", level: 84, description: "Authentication, Firestore Realtime Database & Hosting" },
+        { name: "SQL", level: 86, description: "Relational Modeling, Query Optimization & Joins" }
       ]
     },
     {
-      name: "DevOps & Cloud",
-      icon: "Cloud",
-      skills: [
-        { name: "Docker & Containers", level: 84, description: "Multi-stage builds, Containerization" },
-        { name: "CI/CD Pipelines", level: 86, description: "GitHub Actions, Automated testing & linting" },
-        { name: "AWS / Cloudflare", level: 80, description: "S3, Lambda, Cloudflare Workers, Edge caching" },
-        { name: "Linux & Shell Scripting", level: 88, description: "Bash, Server orchestration, System monitoring" }
-      ]
-    },
-    {
-      name: "AI & Emerging Tech",
+      name: "AI, Security & Tools",
       icon: "Cpu",
       skills: [
-        { name: "LLM Orchestration", level: 88, description: "LangChain, RAG pipelines, Prompt Engineering" },
-        { name: "Vector Databases", level: 82, description: "Pinecone, Chroma, Semantic search" },
-        { name: "WebSockets & WebRTC", level: 85, description: "Real-time communication & live sync" },
-        { name: "Git & Agile Workflow", level: 94, description: "Trunk-based development, Code reviews" }
+        { name: "Artificial Intelligence", level: 88, description: "Search Algorithms, Intelligent Agents & Logic Systems" },
+        { name: "Machine Learning", level: 85, description: "Supervised/Unsupervised Learning, Classification, CNNs" },
+        { name: "Cybersecurity Fundamentals", level: 82, description: "Network Defense, Vulnerability Awareness & Secure Auth" },
+        { name: "Git & GitHub", level: 90, description: "Version Control, Branching, Open Source & Team Workflows" },
+        { name: "Linux", level: 84, description: "Bash Shell Scripting, System Navigation & Environments" }
       ]
     }
   ],
 
   projects: [
     {
-      id: "nexus-ai",
-      title: "NexusAI - Autonomous Multi-Agent Workspace",
-      description: "An intelligent collaborative workspace orchestrating multiple specialized autonomous AI agents to research, write code, and synthesize complex insights.",
-      longDescription: "NexusAI delivers an interactive environment where users can delegate multi-stage tasks to teams of autonomous AI agents. Features streaming SSE responses, dynamic canvas flowcharts, persistent vector search, and edge function execution.",
+      id: "sih-internship-ai",
+      title: "AI-Based Internship Recommendation Engine (SIH 2025)",
+      description: "Smart India Hackathon 2025 innovation matching students with ideal internship opportunities using algorithmic profile analysis.",
+      longDescription: "Engineered specifically for Smart India Hackathon (SIH 2025). This intelligent platform analyzes student academic backgrounds, coding skills, and industry requirements to recommend hyper-relevant internship positions with precision matching and actionable skill-gap insights.",
       category: "AI / ML",
-      tags: ["React", "TypeScript", "Python FastAPI", "LangChain", "Vector DB", "Tailwind CSS"],
+      tags: ["Python", "FastAPI", "React.js", "Machine Learning", "MongoDB", "Tailwind CSS"],
       features: [
-        "Real-time multi-agent orchestration with visual state machine",
-        "Semantic search powered by high-dimensional vector embeddings",
-        "Interactive markdown sandbox with instant code execution previews",
-        "60fps responsive glassmorphism UI with dark theme support"
+        "Algorithmic profile-to-role semantic matching and skill ranking",
+        "Interactive candidate skill gap identifier with tailored upskilling roadmaps",
+        "FastAPI async backend delivering sub-second recommendation inference",
+        "Developed, engineered, and pitched for Smart India Hackathon (SIH 2025)"
       ],
-      metrics: "Sub-100ms response time with edge streaming",
-      liveUrl: "https://example.com/nexus-ai",
-      githubUrl: "https://github.com/aryanjangir/nexus-ai",
+      metrics: "Built for Smart India Hackathon (SIH 2025)",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
       featured: true
     },
     {
-      id: "hyper-forge",
-      title: "HyperForge - Cloud Infrastructure Visualizer",
-      description: "A drag-and-drop cloud architecture diagramming tool that compiles visual topologies into production-ready Terraform and Pulumi scripts.",
-      longDescription: "HyperForge transforms cloud architecture design. Engineers map nodes, load balancers, VPCs, and databases visually while HyperForge calculates estimated monthly AWS/GCP costs and generates automated IaC deployment templates.",
+      id: "cryptopay",
+      title: "CryptoPay - Secure Digital Asset Payment Platform",
+      description: "A secure, modern cryptocurrency transaction and payment platform featuring encrypted flows and real-time wallet tracking.",
+      longDescription: "CryptoPay provides an encrypted environment for digital asset transfers and payment gateway operations. Designed with cybersecurity best practices, multi-layer verification, and live price telemetry feeds.",
       category: "Full-Stack",
-      tags: ["Next.js", "TypeScript", "Canvas API", "Terraform", "PostgreSQL", "Tailwind"],
+      tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Cybersecurity", "Tailwind CSS"],
       features: [
-        "Interactive infinite canvas with magnetic grid snapping",
-        "Real-time cost calculator integrated with AWS Pricing API",
-        "Instant one-click Terraform HCL & Docker Compose export",
-        "Multiplayer cursor collaboration with WebSockets"
+        "End-to-end encrypted transaction validation and secure session handling",
+        "Real-time digital currency conversion and portfolio balance telemetry",
+        "Protected authentication pipelines preventing common web vulnerabilities",
+        "Futuristic dark cyber dashboard with instant transfer logs"
       ],
-      metrics: "Reduces IaC drafting time by 65%",
-      liveUrl: "https://example.com/hyper-forge",
-      githubUrl: "https://github.com/aryanjangir/hyper-forge",
+      metrics: "Built with security-first architecture",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
       featured: true
     },
     {
-      id: "chronos-terminal",
-      title: "Chronos OS - Web-Based UNIX Environment",
-      description: "A lightweight, in-browser operating system featuring an interactive terminal, window manager, file system in IndexedDB, and retro sound synthesizer.",
-      longDescription: "Chronos OS provides a complete desktop and shell environment in the browser. It includes custom piping, vim-like editor, package manager simulations, and audio synthesizers built with Web Audio API.",
-      category: "Systems / Web3",
-      tags: ["TypeScript", "Web Audio API", "IndexedDB", "React", "CSS Modules"],
+      id: "mindease",
+      title: "MindEase - AI Mental Health & Wellness Companion",
+      description: "An AI-powered mental wellness companion providing smart stress tracking, calming exercises, and conversational sentiment analysis.",
+      longDescription: "MindEase offers a private and compassionate digital sanctuary. Utilizes NLP and machine learning to analyze user mood patterns, guide therapeutic breathing cycles, and provide personalized stress-relief exercises.",
+      category: "AI / ML",
+      tags: ["React.js", "Python", "FastAPI", "AI / ML", "Firebase", "Tailwind CSS"],
       features: [
-        "POSIX-compliant command interpreter with command chaining",
-        "Persistent client-side virtual file system with quota controls",
-        "Retro 8-bit sound chip synthesizer simulation",
-        "Custom window manager with snapping, minimizing, and z-index ordering"
+        "NLP-driven sentiment analysis and mood trend journaling",
+        "Guided breathing cycles with soothing ambient audiovisual feedback",
+        "Interactive mental wellness metrics and weekly progress reports",
+        "Strict client-side privacy and encrypted personal data storage"
       ],
-      metrics: "Zero dependencies, 45KB gzipped payload",
-      liveUrl: "https://example.com/chronos",
-      githubUrl: "https://github.com/aryanjangir/chronos-os",
+      metrics: "AI-driven wellness and sentiment analysis",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
       featured: true
     },
     {
-      id: "pulse-metrics",
-      title: "Pulse - Real-Time Distributed Telemetry Dashboard",
-      description: "High-throughput telemetry and anomaly detection platform processing live server metrics with sub-second alerting and interactive heatmaps.",
-      longDescription: "Engineered to monitor distributed microservices with minimal overhead. Consumes Kafka streams, aggregates time-series data with Redis Timeseries, and visualizes CPU/Memory spikes with WebGL heatmaps.",
+      id: "noteshare",
+      title: "NoteShare - Collaborative Academic Resource Hub",
+      description: "A collaborative academic repository enabling students to organize, upload, tag, and discover lecture notes and study material.",
+      longDescription: "Created to eliminate fragmented study resources in college. Enables students from Arya College and beyond to upload lecture notes, previous year question papers (PYQs), and reference guides with peer verification.",
       category: "Full-Stack",
-      tags: ["Go", "React", "TypeScript", "Redis", "TimescaleDB", "Docker"],
+      tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
       features: [
-        "Handles 100k+ events/sec throughput with automated backpressure",
-        "Interactive WebGL time-series charts with zero frame drops",
-        "Rule-based smart alert routing via Discord & Slack webhooks",
-        "Role-based access control with audited security tokens"
+        "Subject, department, and semester-wise categorized document repository",
+        "Peer verification, rating, and upvote system for resource quality",
+        "Instant in-browser document previews and high-speed downloads",
+        "Role-based contributor badges recognizing top academic sharers"
       ],
-      metrics: "99.99% uptime benchmark across 12 nodes",
-      liveUrl: "https://example.com/pulse",
-      githubUrl: "https://github.com/aryanjangir/pulse-telemetry",
+      metrics: "Empowering collaborative student learning",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
+      featured: true
+    },
+    {
+      id: "face-age-analysis",
+      title: "Face Age Analysis - Computer Vision & Deep Learning",
+      description: "Real-time facial detection and age group prediction system using convolutional neural networks and computer vision.",
+      longDescription: "A deep learning computer vision system that captures facial video streams, detects facial landmarks, and applies trained CNN classification layers to estimate age brackets and facial features in real time.",
+      category: "AI / ML",
+      tags: ["Python", "Computer Vision", "Deep Learning", "Machine Learning", "CNN"],
+      features: [
+        "Real-time facial landmark detection and bounding box alignment",
+        "Multi-stage convolutional neural network (CNN) for age classification",
+        "Live webcam inference stream with low latency processing",
+        "Analytics dashboard visualizing detection probabilities and confidence"
+      ],
+      metrics: "Real-time facial feature inference",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
       featured: false
     },
     {
-      id: "zenith-exchange",
-      title: "Zenith - Low-Latency Crypto Order Book Simulator",
-      description: "A simulated high-frequency trading interface featuring WebSocket order feeds, depth chart visualizations, and algorithmic limit order matching.",
-      longDescription: "Designed to experiment with trading engine mechanics. Implements an in-memory price-time priority matching engine in TypeScript with sub-millisecond fill times and realistic slippage simulation.",
+      id: "arduino-soil-moisture",
+      title: "Arduino-Based Soil Moisture Detection & Smart Irrigation",
+      description: "An automated embedded IoT hardware system that monitors soil hydration levels and triggers automated irrigation relays.",
+      longDescription: "An IoT embedded system built with Arduino and C++. Continuously reads capacitive soil moisture sensors and activates water pump relays automatically when soil moisture falls below threshold levels, ideal for smart farming.",
       category: "Systems / Web3",
-      tags: ["TypeScript", "WebSockets", "React", "Canvas", "Tailwind CSS"],
+      tags: ["C++", "Arduino", "IoT Sensors", "Embedded Systems", "Hardware"],
       features: [
-        "In-memory order book with price-time priority matching engine",
-        "Real-time dynamic Depth Chart rendered using Canvas 2D API",
-        "Simulated algorithmic trader bots generating realistic liquidity",
-        "Sound feedback for order placements, fills, and market shocks"
+        "Continuous analog soil hydration measurement with capacitive sensing",
+        "Automated relay switching for water pump actuation with hysteresis control",
+        "Hardware status LEDs and display output for immediate field diagnostics",
+        "Energy-efficient low-power sleep cycles for prolonged battery endurance"
       ],
-      metrics: "< 5ms order book update latency",
-      liveUrl: "https://example.com/zenith",
-      githubUrl: "https://github.com/aryanjangir/zenith-exchange",
+      metrics: "Hardware-level automated environmental control",
+      liveUrl: "https://github.com/aryanjangir",
+      githubUrl: "https://github.com/aryanjangir",
       featured: false
     }
   ],
@@ -192,48 +211,47 @@ export const portfolioData: PortfolioData = {
   experiences: [
     {
       id: "exp-1",
-      role: "Lead Full-Stack Developer",
-      company: "InnovateTech Labs",
-      period: "2024 - Present",
-      location: "Remote / Hybrid",
-      type: "Full-time",
+      role: "B.Tech in Artificial Intelligence & Data Science (3rd Year)",
+      company: "Arya College of Engineering & IT, Jaipur",
+      period: "2024 - 2028 (Expected)",
+      location: "Jaipur, Rajasthan, India",
+      type: "Education",
       description: [
-        "Architected scalable cloud microservices reducing server response times by 35%.",
-        "Spearheaded design and migration to a unified React + TypeScript design system adopted across 4 major products.",
-        "Mentored junior engineers and led bi-weekly technical design reviews for code quality."
+        "Pursuing specialized engineering degree in Artificial Intelligence and Data Science.",
+        "Deep coursework across Data Structures & Algorithms, Machine Learning, Database Systems, Computer Networks, and Cybersecurity fundamentals.",
+        "Active leader and builder in college tech events, hackathons, and software projects."
       ],
-      technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Docker", "AWS"],
-      link: "https://example.com"
+      technologies: ["Python", "C/C++", "Java", "AI/ML", "SQL", "Linux", "Data Structures"],
+      link: "https://www.aryacollege.in/"
     },
     {
       id: "exp-2",
-      role: "Software Engineering Intern / Freelancer",
-      company: "Apex Digital Solutions",
-      period: "2023 - 2024",
-      location: "India",
-      type: "Contract",
+      role: "Project Lead & AI Developer - SIH 2025",
+      company: "Smart India Hackathon (SIH 2025)",
+      period: "2025",
+      location: "National Level, India",
+      type: "Hackathon",
       description: [
-        "Built dynamic client dashboards and automated CI/CD deployments on Cloudflare and Vercel.",
-        "Integrated AI search tools reducing user inquiry resolution time by 50%.",
-        "Achieved 100/100 Lighthouse performance and SEO scores on client portfolio portals."
+        "Led architecture and development of the AI-Based Internship Recommendation Engine to address national student placement challenges.",
+        "Engineered the FastAPI recommendation backend, machine learning matching algorithms, and responsive React.js UI.",
+        "Collaborated under intense sprint timelines to deliver a production-ready, scalable prototype."
       ],
-      technologies: ["Next.js", "Tailwind CSS", "FastAPI", "Redis", "Framer Motion"],
-      link: "https://example.com"
+      technologies: ["Python", "FastAPI", "React.js", "Machine Learning", "MongoDB", "Tailwind CSS"],
+      link: "https://www.sih.gov.in/"
     },
     {
       id: "exp-3",
-      role: "Open Source Contributor & Builder",
-      company: "Developer Community",
-      period: "2022 - Present",
-      location: "Global",
-      type: "Open Source",
+      role: "Full-Stack & Intelligent Systems Builder",
+      company: "Self-Driven Projects & Open Source",
+      period: "2023 - Present",
+      location: "Jaipur, India",
+      type: "Projects",
       description: [
-        "Contributed bug fixes and developer documentation to widely-used React and UI component repositories.",
-        "Built developer utility CLI tools with 1,000+ downloads on npm registry.",
-        "Authored comprehensive architectural articles on modern web performance."
+        "Engineered multiple deployed applications: CryptoPay (secure payments), MindEase (AI wellness companion), and NoteShare (academic sharing).",
+        "Built embedded IoT systems utilizing Arduino, C++, and sensors for smart agricultural automation.",
+        "Continuously exploring emerging AI models, network defense principles, and high-performance web architectures."
       ],
-      technologies: ["TypeScript", "Node.js", "Web APIs", "Git", "GitHub Actions"]
+      technologies: ["React.js", "Python", "Node.js", "FastAPI", "MongoDB", "Firebase", "Cybersecurity", "Arduino"]
     }
   ]
 };
-

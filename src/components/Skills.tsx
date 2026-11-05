@@ -7,7 +7,8 @@ import {
   Layers, 
   Search, 
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  Code2
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
@@ -19,10 +20,10 @@ export const Skills: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const categoryIcons: Record<string, React.ReactNode> = {
-    'Frontend Mastery': <Layout className="w-4 h-4 text-cyan-400" />,
-    'Backend & Systems': <Server className="w-4 h-4 text-emerald-400" />,
-    'DevOps & Cloud': <Cloud className="w-4 h-4 text-purple-400" />,
-    'AI & Emerging Tech': <Cpu className="w-4 h-4 text-amber-400" />,
+    'Programming Languages': <Code2 className="w-4 h-4 text-cyan-400" />,
+    'Web & Full-Stack': <Layout className="w-4 h-4 text-emerald-400" />,
+    'Backend & Databases': <Server className="w-4 h-4 text-purple-400" />,
+    'AI, Security & Tools': <Cpu className="w-4 h-4 text-amber-400" />,
   };
 
   const allSkills = portfolioData.skills.flatMap((cat) =>
