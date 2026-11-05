@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Sparkles, ArrowDown, RotateCcw } from 'lucide-react';
+import { Sparkles, ArrowDown, Zap } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { ARYAN_FACE_MESH } from '../data/aryanFaceMesh';
 
@@ -19,7 +19,6 @@ interface Particle {
   alpha: number;
   origAlpha: number;
   phase: number;
-  isDispersed: boolean;
 }
 
 interface ParticleLoaderProps {
@@ -30,9 +29,7 @@ interface ParticleLoaderProps {
 export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOpen }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isRevealed, setIsRevealed] = useState(false);
-  const [scanProgress, setScanProgress] = useState(0);
-  const [isScanning, setIsScanning] = useState(false);
+  const [isShockwave, setIsShockwave] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -48,17 +45,14 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
     isHovering: false 
   });
   const animFrameRef = useRef<number | null>(null);
-  const scanTimerRef = useRef<number | null>(null);
 
   // 1. Initial 0 to 100 Circular Counter
   useEffect(() => {
     if (!isOpen) return;
 
     setIsLoaded(false);
-    setIsRevealed(false);
+    setIsShockwave(false);
     setIsExiting(false);
-    setIsScanning(false);
-    setScanProgress(0);
     setLoadingProgress(0);
 
     let current = 0;
@@ -103,13 +97,12 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
       alpha: 0,
       origAlpha: pt.a,
       phase: Math.random() * Math.PI * 2,
-      isDispersed: false,
     }));
 
     particlesRef.current = particles;
   }, [isOpen]);
 
-  // 3. Canvas 60fps Render Loop (3D Perspective, Magnetic Hover Glow & Laser Sweep)
+  // 3. Canvas 60fps Render Loop (3D Perspective, Magnetic Hover Glow & Shockwave Physics)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -220,15 +213,21 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        if (p.isDispersed) {
-          // Scattered velocity flight when laser sweeps
+        if (p.vx !== 0 || p.vy !== 0 || p.vz !== 0) {
+          // Shockwave dispersal flight
           p.x += p.vx;
           p.y += p.vy;
           p.z += p.vz;
-          p.vx *= 0.96;
-          p.vy *= 0.96;
-          p.vz *= 0.96;
-          p.alpha = Math.max(0, p.alpha - 0.03);
+          p.vx *= 0.94;
+          p.vy *= 0.94;
+          p.vz *= 0.94;
+
+          // Stop tiny velocity drift
+          if (Math.abs(p.vx) < 0.1 && Math.abs(p.vy) < 0.1 && Math.abs(p.vz) < 0.1) {
+            p.vx = 0;
+            p.vy = 0;
+            p.vz = 0;
+          }
         } else {
           // Assemble back to exact base position
           p.alpha = Math.min(p.origAlpha, p.alpha + 0.05);
@@ -307,92 +306,32 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
     };
   }, []);
 
-  // 4. Laser Reveal and Back-to-Dots Action
-  const triggerReveal = useCallback(() => {
+  // 4. Interactive Shockwave Burst & Magnetize Back
+  const triggerShockwave = useCallback(() => {
+    if (isShockwave) return;
     sound.playLaserSweep();
-    setIsScanning(true);
-    setIsRevealed(true);
+    setIsShockwave(true);
 
-    // Setup progressive laser scanline from top (0%) to bottom (100%)
-    const height = 540;
-    const durationMs = 1100;
-    const startTime = performance.now();
+    // Blast particles outward in 3D
+    const particles = particlesRef.current;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.vx = (p.x / 14 + (Math.random() - 0.5) * 18);
+      p.vy = (p.y / 14 + (Math.random() - 0.5) * 18);
+      p.vz = ((Math.random() - 0.5) * 32);
+    }
 
-    const animateScan = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(100, (elapsed / durationMs) * 100);
-      setScanProgress(progress);
-
-      // Current Y threshold in canvas coordinate space (-270 to +270)
-      const currentCanvasY = (progress / 100) * height - 270;
-
-      // Disperse particles as the laser passes them
-      const particles = particlesRef.current;
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        if (!p.isDispersed && p.y <= currentCanvasY + 15) {
-          p.isDispersed = true;
-          // Spark explosion outwards
-          p.vx = (p.x / 20 + (Math.random() - 0.5) * 14);
-          p.vy = (Math.random() - 0.7) * 12;
-          p.vz = (Math.random() - 0.5) * 20;
-        }
-      }
-
-      if (progress < 100) {
-        scanTimerRef.current = requestAnimationFrame(animateScan);
-      } else {
-        setIsScanning(false);
-      }
-    };
-
-    scanTimerRef.current = requestAnimationFrame(animateScan);
-  }, []);
-
-  const triggerBackToDots = useCallback(() => {
-    sound.playLaserSweep();
-    setIsScanning(true);
-
-    const height = 540;
-    const durationMs = 800;
-    const startTime = performance.now();
-
-    const animateReverse = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.max(0, 100 - (elapsed / durationMs) * 100);
-      setScanProgress(progress);
-
-      const currentCanvasY = (progress / 100) * height - 270;
-
-      // Re-converge particles as laser moves up
-      const particles = particlesRef.current;
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        if (p.isDispersed && p.y >= currentCanvasY - 15) {
-          p.isDispersed = false;
-          p.vx = 0;
-          p.vy = 0;
-          p.vz = 0;
-        }
-      }
-
-      if (progress > 0) {
-        scanTimerRef.current = requestAnimationFrame(animateReverse);
-      } else {
-        setIsScanning(false);
-        setIsRevealed(false);
-        // Ensure all particles are fully re-assembled
-        particlesRef.current.forEach((p) => {
-          p.isDispersed = false;
-          p.vx = 0;
-          p.vy = 0;
-          p.vz = 0;
-        });
-      }
-    };
-
-    scanTimerRef.current = requestAnimationFrame(animateReverse);
-  }, []);
+    // Magnetically re-converge after 700ms
+    setTimeout(() => {
+      sound.playSuccess();
+      particlesRef.current.forEach((p) => {
+        p.vx = 0;
+        p.vy = 0;
+        p.vz = 0;
+      });
+      setIsShockwave(false);
+    }, 750);
+  }, [isShockwave]);
 
   const handleEnterPortfolio = () => {
     sound.playSuccess();
@@ -415,14 +354,14 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
           <span className="text-xs font-mono tracking-widest text-zinc-300 uppercase font-semibold">
-            Aryan Jangir • Neural Hologram Mesh
+            Aryan Jangir • 3D Hologram Mesh
           </span>
         </div>
 
         <button
           onClick={handleEnterPortfolio}
           onMouseEnter={() => sound.playHover()}
-          className="text-xs font-mono text-zinc-300 hover:text-white px-4 py-1.5 rounded-full glass-panel border border-white/10 hover:border-white/30 transition-all flex items-center gap-1.5 shadow-lg hover:scale-105 active:scale-95"
+          className="text-xs font-mono text-zinc-300 hover:text-white px-4 py-1.5 rounded-full glass-panel border border-white/10 hover:border-white/30 transition-all flex items-center gap-1.5 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
         >
           <span>Skip to Portfolio</span>
           <ArrowDown className="w-3.5 h-3.5" />
@@ -483,7 +422,8 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
       )}
 
       {/* ========================================================
-          PHASE 2: 3D Holographic Face Bust Stage & Laser Reveal
+          PHASE 2: 100% Pure 3D Holographic Face Particle Bust
+          (Zero 2D Photo - Pure Glowing 3D Neural Dots)
           ======================================================== */}
       <div 
         className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 z-20 ${
@@ -494,11 +434,9 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-black text-6xl sm:text-8xl md:text-9xl lg:text-[180px] tracking-wider pointer-events-none select-none transition-all duration-700 leading-none"
           style={{
-            color: isRevealed ? '#ff1a4a' : '#222538',
-            textShadow: isRevealed 
-              ? '0 0 90px rgba(255, 26, 74, 0.45), 0 0 35px rgba(255, 26, 74, 0.65)' 
-              : '0 0 40px rgba(0, 0, 0, 0.85)',
-            opacity: isRevealed ? 0.40 : 0.22,
+            color: '#ff1a4a',
+            textShadow: '0 0 90px rgba(255, 26, 74, 0.35), 0 0 35px rgba(255, 26, 74, 0.45)',
+            opacity: 0.28,
             filter: 'blur(1px)',
           }}
         >
@@ -512,43 +450,12 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
           <div 
             className="absolute inset-0 rounded-full blur-[100px] pointer-events-none transition-all duration-700"
             style={{
-              backgroundColor: isRevealed ? '#ff1a4a' : '#ff7b00',
-              opacity: isRevealed ? 0.28 : 0.16,
+              backgroundColor: '#ff2a5f',
+              opacity: 0.18,
             }}
           />
 
-          {/* Real Photo Portrait Layer (Unmasked directly by the Laser Beam) */}
-          <div 
-            className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none transition-opacity duration-300"
-            style={{
-              clipPath: isRevealed 
-                ? `inset(0 0 ${Math.max(0, 100 - scanProgress)}% 0)` 
-                : 'inset(0 0 100% 0)',
-            }}
-          >
-            <img
-              src="/aryan_avatar_hologram.png"
-              alt="Aryan Jangir"
-              className="w-full h-full object-contain filter drop-shadow-[0_10px_50px_rgba(255,26,74,0.4)]"
-            />
-          </div>
-
-          {/* Laser Scanline Beam Sweep */}
-          {(isScanning || (isRevealed && scanProgress < 100)) && (
-            <div 
-              className="absolute left-0 right-0 h-[2px] pointer-events-none z-30 transition-all ease-linear"
-              style={{
-                top: `${scanProgress}%`,
-                background: 'linear-gradient(90deg, transparent 0%, #ff8c00 25%, #ffffff 50%, #ff2a5f 75%, transparent 100%)',
-                boxShadow: '0 0 15px #ffffff, 0 0 30px #ff2a5f, 0 0 60px #ff2a5f',
-              }}
-            >
-              {/* Central Glowing Spark Flare */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white blur-[2px] opacity-90 shadow-[0_0_20px_#ffffff]" />
-            </div>
-          )}
-
-          {/* 3D Holographic Particle Canvas */}
+          {/* 3D Holographic Particle Canvas (100% Pure Dots) */}
           <canvas
             ref={canvasRef}
             className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing z-20"
@@ -556,48 +463,43 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
         </div>
 
         {/* Interactive Controls & CTA Button Group */}
-        <div className="relative z-30 mt-4 sm:mt-6 flex flex-col items-center gap-3">
+        <div className="relative z-30 mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3">
+          {/* Shockwave Particle Pulse Button */}
           <button
-            onClick={isRevealed ? triggerBackToDots : triggerReveal}
+            onClick={triggerShockwave}
             onMouseEnter={() => sound.playHover()}
-            className="px-8 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
+            disabled={isShockwave}
+            className="px-6 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
             style={{
-              borderColor: isRevealed ? '#38bdf8' : '#ff2a5f',
-              boxShadow: isRevealed 
-                ? '0 0 25px rgba(56, 189, 248, 0.4)' 
-                : '0 0 25px rgba(255, 42, 95, 0.45)',
-              backgroundColor: isRevealed 
-                ? 'rgba(56, 189, 248, 0.15)' 
-                : 'rgba(255, 42, 95, 0.18)',
+              borderColor: '#ff2a5f',
+              boxShadow: '0 0 20px rgba(255, 42, 95, 0.35)',
+              backgroundColor: 'rgba(255, 42, 95, 0.15)',
             }}
           >
-            {isRevealed ? (
-              <>
-                <RotateCcw className="w-4 h-4 text-sky-400 group-hover:rotate-180 transition-transform duration-500" />
-                <span>BACK TO DOTS</span>
-              </>
-            ) : (
-              <>
-                <Sparkles className="w-4 h-4 text-rose-400 animate-pulse" />
-                <span>REVEAL</span>
-              </>
-            )}
+            <Zap className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+            <span>{isShockwave ? 'DISPERSING...' : 'SHOCKWAVE PULSE'}</span>
           </button>
 
-          {/* Enter Portfolio CTA */}
+          {/* Primary Enter Portfolio Button */}
           <button
             onClick={handleEnterPortfolio}
             onMouseEnter={() => sound.playHover()}
-            className="px-5 py-1.5 rounded-full text-xs font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1.5 hover:underline cursor-pointer"
+            className="px-8 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
+            style={{
+              borderColor: '#38bdf8',
+              boxShadow: '0 0 25px rgba(56, 189, 248, 0.45)',
+              backgroundColor: 'rgba(56, 189, 248, 0.20)',
+            }}
           >
-            <span>Explore Full Portfolio</span>
-            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
+            <Sparkles className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
+            <span>ENTER PORTFOLIO</span>
+            <ArrowDown className="w-3.5 h-3.5 text-cyan-400 animate-bounce" />
           </button>
         </div>
       </div>
 
       {/* Bottom Status Subtitle */}
-      <div className="absolute bottom-4 text-[11px] font-mono text-zinc-500 text-center z-30 pointer-events-none">
+      <div className="absolute bottom-4 text-[11px] font-mono text-zinc-400 text-center z-30 pointer-events-none">
         {isLoaded 
           ? 'Move cursor over hologram to rotate & interact with 3D neural particles' 
           : 'Synthesizing neural face mesh...'}
@@ -605,3 +507,5 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
     </div>
   );
 };
+
+export default ParticleLoader;
