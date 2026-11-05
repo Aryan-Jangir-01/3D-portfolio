@@ -270,3 +270,4 @@ export const AryanBot: React.FC<AryanBotProps> = ({ isOpen, onClose, onOpen }) =
     </>
   );
 };
+

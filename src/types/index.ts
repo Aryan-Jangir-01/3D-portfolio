@@ -67,3 +67,4 @@ export interface PortfolioData {
     avatar?: string;
   }[];
 }
+

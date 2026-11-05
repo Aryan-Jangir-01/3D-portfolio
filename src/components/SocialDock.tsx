@@ -4,7 +4,8 @@ import {
   Terminal, 
   Command, 
   ArrowUp,
-  Sparkles
+  Sparkles,
+  Eye
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import confetti from 'canvas-confetti';
@@ -15,9 +16,10 @@ import { sound } from '../utils/sound';
 interface SocialDockProps {
   onOpenTerminal: () => void;
   onOpenCommandPalette: () => void;
+  onReplayLoader?: () => void;
 }
 
-export const SocialDock: React.FC<SocialDockProps> = ({ onOpenTerminal, onOpenCommandPalette }) => {
+export const SocialDock: React.FC<SocialDockProps> = ({ onOpenTerminal, onOpenCommandPalette, onReplayLoader }) => {
   const { themeConfig } = useTheme();
 
   const scrollToTop = () => {
@@ -35,6 +37,13 @@ export const SocialDock: React.FC<SocialDockProps> = ({ onOpenTerminal, onOpenCo
   };
 
   const dockItems = [
+    {
+      label: 'Hologram Intro',
+      icon: <Eye className="w-4 h-4 text-rose-400" />,
+      action: () => {
+        if (onReplayLoader) onReplayLoader();
+      },
+    },
     {
       label: 'GitHub',
       icon: <GithubIcon className="w-4 h-4" />,

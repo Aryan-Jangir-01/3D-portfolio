@@ -12,7 +12,8 @@ import {
   Gamepad2, 
   Briefcase, 
   Layers,
-  ArrowRight
+  ArrowRight,
+  Eye
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '../context/ThemeContext';
@@ -23,6 +24,7 @@ interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenTerminal: () => void;
+  onReplayLoader?: () => void;
 }
 
 interface CommandItem {
@@ -34,7 +36,12 @@ interface CommandItem {
   action: () => void;
 }
 
-export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose, onOpenTerminal }) => {
+export const CommandPalette: React.FC<CommandPaletteProps> = ({ 
+  isOpen, 
+  onClose, 
+  onOpenTerminal,
+  onReplayLoader 
+}) => {
   const { setTheme, availableThemes, themeConfig } = useTheme();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -51,6 +58,23 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
   };
 
   const commands: CommandItem[] = [
+    // Hologram Loader
+    ...(onReplayLoader
+      ? [
+          {
+            id: 'act-hologram',
+            title: 'Play 3D Hologram Reveal Intro',
+            subtitle: 'Replay the futuristic particle point-cloud loader',
+            category: 'Actions' as const,
+            icon: <Eye className="w-4 h-4 text-rose-400" />,
+            action: () => {
+              onClose();
+              onReplayLoader();
+            },
+          },
+        ]
+      : []),
+
     // Navigation
     {
       id: 'nav-about',
@@ -199,10 +223,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         if (isOpen) onClose();
-        else {
-          sound.playClick();
-          // Handled externally or triggers open
-        }
       }
 
       if (!isOpen) return;
@@ -253,7 +273,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Type a command or search sections... (e.g. projects, theme, terminal)"
+            placeholder="Type a command or search sections... (e.g. hologram, projects, terminal)"
             className="w-full bg-transparent border-none outline-none text-white placeholder-zinc-500 text-sm font-sans"
           />
           <kbd className="px-2 py-0.5 rounded bg-white/10 text-[10px] font-mono text-zinc-400 border border-white/10">

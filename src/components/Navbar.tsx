@@ -8,7 +8,8 @@ import {
   X, 
   Command, 
   Sparkles,
-  Clock
+  Clock,
+  Eye
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { sound } from '../utils/sound';
@@ -16,9 +17,10 @@ import { sound } from '../utils/sound';
 interface NavbarProps {
   onOpenTerminal: () => void;
   onOpenCommandPalette: () => void;
+  onReplayLoader?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPalette }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPalette, onReplayLoader }) => {
   const { theme, setTheme, availableThemes, themeConfig } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [soundActive, setSoundActive] = useState(sound.isEnabled());
@@ -120,6 +122,22 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
         {/* Right Action Icons & Controls */}
         <div className="flex items-center gap-2">
           
+          {/* Hologram Loader Trigger */}
+          {onReplayLoader && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onReplayLoader();
+              }}
+              onMouseEnter={() => sound.playHover()}
+              title="Show 3D Hologram Reveal Intro"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-xs font-mono text-rose-300 hover:text-white transition-all shadow-[0_0_15px_rgba(244,63,94,0.2)]"
+            >
+              <Eye className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
+              <span>Hologram</span>
+            </button>
+          )}
+
           {/* Live IST clock */}
           <div className="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-zinc-300">
             <Clock className="w-3.5 h-3.5 text-cyan-400" />
@@ -242,6 +260,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
                 {link.label}
               </a>
             ))}
+
+            {onReplayLoader && (
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  setMobileMenuOpen(false);
+                  onReplayLoader();
+                }}
+                className="px-4 py-2.5 rounded-lg text-sm text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 text-left transition-colors flex items-center gap-2"
+              >
+                <Eye className="w-4 h-4" />
+                <span>Play Hologram 3D Intro</span>
+              </button>
+            )}
+
             <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-zinc-400 font-mono">
               <span className="flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />

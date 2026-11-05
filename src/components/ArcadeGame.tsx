@@ -322,3 +322,4 @@ export const ArcadeGame: React.FC = () => {
     </section>
   );
 };
+

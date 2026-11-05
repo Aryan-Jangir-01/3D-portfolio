@@ -15,14 +15,22 @@ import { Footer } from './components/Footer';
 import { TerminalModal } from './components/TerminalModal';
 import { CommandPalette } from './components/CommandPalette';
 import { AryanBot } from './components/AryanBot';
+import { ParticleLoader } from './components/ParticleLoader';
 
 export const AppContent: React.FC = () => {
+  const [showLoader, setShowLoader] = useState(true);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [botOpen, setBotOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen text-slate-100 cyber-grid overflow-x-hidden">
+      {/* Cinematic 3D Hologram Particle Loader & Reveal Screen */}
+      <ParticleLoader 
+        isOpen={showLoader} 
+        onComplete={() => setShowLoader(false)} 
+      />
+
       {/* 60fps Interactive Starfield Canvas Background */}
       <StarfieldCanvas />
 
@@ -33,6 +41,7 @@ export const AppContent: React.FC = () => {
       <Navbar 
         onOpenTerminal={() => setTerminalOpen(true)}
         onOpenCommandPalette={() => setPaletteOpen(true)}
+        onReplayLoader={() => setShowLoader(true)}
       />
 
       {/* Main Sections */}
@@ -53,6 +62,7 @@ export const AppContent: React.FC = () => {
       <SocialDock 
         onOpenTerminal={() => setTerminalOpen(true)}
         onOpenCommandPalette={() => setPaletteOpen(true)}
+        onReplayLoader={() => setShowLoader(true)}
       />
 
       {/* Footer */}
@@ -69,6 +79,7 @@ export const AppContent: React.FC = () => {
         isOpen={paletteOpen} 
         onClose={() => setPaletteOpen(false)}
         onOpenTerminal={() => setTerminalOpen(true)}
+        onReplayLoader={() => setShowLoader(true)}
       />
 
       {/* AI Assistant Widget (AryanBot) */}
