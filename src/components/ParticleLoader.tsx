@@ -432,55 +432,55 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
       {/* ========================================================
           PHASE 1: Dead-Centered Circular Progress Ring (0 to 100)
           ======================================================== */}
-      <div 
-        className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 pointer-events-none z-30 ${
-          isLoaded ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
-        }`}
-      >
-        <div className="relative w-36 h-36 flex items-center justify-center">
-          {/* Glowing Circular SVG Arc */}
-          <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="42"
-              stroke="rgba(255, 255, 255, 0.07)"
-              strokeWidth="2.5"
-              fill="none"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="42"
-              stroke="#ff2a5f"
-              strokeWidth="2.5"
-              fill="none"
-              strokeDasharray="264"
-              strokeDashoffset={264 - (264 * loadingProgress) / 100}
-              strokeLinecap="round"
-              className="transition-all duration-75 ease-out"
-              style={{
-                filter: 'drop-shadow(0 0 12px #ff2a5f)',
-              }}
-            />
-          </svg>
+      {!isLoaded && (
+        <div 
+          className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-30 transition-all duration-300"
+        >
+          <div className="relative w-36 h-36 flex items-center justify-center">
+            {/* Glowing Circular SVG Arc */}
+            <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+              <circle
+                cx="50"
+                cy="50"
+                r="42"
+                stroke="rgba(255, 255, 255, 0.07)"
+                strokeWidth="2.5"
+                fill="none"
+              />
+              <circle
+                cx="50"
+                cy="50"
+                r="42"
+                stroke="#ff2a5f"
+                strokeWidth="2.5"
+                fill="none"
+                strokeDasharray="264"
+                strokeDashoffset={264 - (264 * loadingProgress) / 100}
+                strokeLinecap="round"
+                className="transition-all duration-75 ease-out"
+                style={{
+                  filter: 'drop-shadow(0 0 12px #ff2a5f)',
+                }}
+              />
+            </svg>
 
-          {/* Inner Counter: 000 to 100 */}
-          <div className="absolute flex flex-col items-center">
-            <span className="font-mono text-3xl font-extrabold text-white tracking-tight">
-              {String(loadingProgress).padStart(3, '0')}
-            </span>
-            <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mt-0.5">
-              LOADING
-            </span>
+            {/* Inner Counter: 000 to 100 */}
+            <div className="absolute flex flex-col items-center">
+              <span className="font-mono text-3xl font-extrabold text-white tracking-tight">
+                {String(loadingProgress).padStart(3, '0')}
+              </span>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mt-0.5">
+                LOADING
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-7 text-xs font-mono text-zinc-400 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
+            <span>Synthesizing Aryan's Facial Mesh Nodes...</span>
           </div>
         </div>
-
-        <div className="mt-7 text-xs font-mono text-zinc-400 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
-          <span>Synthesizing Aryan's Facial Mesh Nodes...</span>
-        </div>
-      </div>
+      )}
 
       {/* ========================================================
           PHASE 2: 3D Holographic Face Bust Stage & Laser Reveal
