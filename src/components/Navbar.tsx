@@ -64,7 +64,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Arcade', href: '#arcade' },
     { label: 'Contact', href: '#contact' },
   ];
 

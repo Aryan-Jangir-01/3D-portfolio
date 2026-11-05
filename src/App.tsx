@@ -8,7 +8,6 @@ import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Experience } from './components/Experience';
-import { ArcadeGame } from './components/ArcadeGame';
 import { Contact } from './components/Contact';
 import { SocialDock } from './components/SocialDock';
 import { Footer } from './components/Footer';
@@ -54,7 +53,6 @@ export const AppContent: React.FC = () => {
         <Skills />
         <Projects />
         <Experience />
-        <ArcadeGame />
         <Contact />
       </main>
 

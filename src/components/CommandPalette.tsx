@@ -9,7 +9,6 @@ import {
   Sparkles, 
   FileText, 
   Mail, 
-  Gamepad2, 
   Briefcase, 
   Layers,
   ArrowRight,
@@ -117,17 +116,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       icon: <Briefcase className="w-4 h-4 text-yellow-400" />,
       action: () => {
         window.location.hash = '#experience';
-        onClose();
-      },
-    },
-    {
-      id: 'nav-arcade',
-      title: 'Play Cyber Arcade Game',
-      subtitle: 'Launch in-browser retro minigame',
-      category: 'Navigation',
-      icon: <Gamepad2 className="w-4 h-4 text-rose-400" />,
-      action: () => {
-        window.location.hash = '#arcade';
         onClose();
       },
     },
