@@ -3,9 +3,7 @@ import {
   FileText, 
   MapPin, 
   CheckCircle2, 
-  Terminal, 
   Headphones, 
-  Code2, 
   Sparkles,
   ArrowUpRight
 } from 'lucide-react';
@@ -84,12 +82,15 @@ export const About: React.FC = () => {
           </div>
 
           <div className="mt-6 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-xs font-mono">
-                AJ
-              </div>
+            <div className="flex items-center gap-3">
+              <img
+                src="/aryan_avatar_formal.png"
+                alt="Aryan Jangir"
+                className="w-11 h-11 rounded-full object-cover border-2 shadow-lg"
+                style={{ borderColor: themeConfig.primary }}
+              />
               <div className="text-xs">
-                <div className="text-white font-medium">Aryan Jangir</div>
+                <div className="text-white font-bold text-sm">Aryan Jangir</div>
                 <div className="text-zinc-400">{portfolioData.title}</div>
               </div>
             </div>
@@ -220,4 +221,3 @@ export const About: React.FC = () => {
     </section>
   );
 };
-
