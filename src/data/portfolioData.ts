@@ -2,22 +2,23 @@ import { PortfolioData } from '../types';
 
 export const portfolioData: PortfolioData = {
   name: "Aryan Jangir",
-  handle: "aryanjangir",
+  handle: "Aryan-Jangir-01",
   title: "AI & Data Science Student | Full-Stack & Cybersecurity Enthusiast",
   roles: [
     "AI & Data Science Undergrad (Class of 2028)",
+    "Game Developer & 2D Engine Builder",
     "Full-Stack Web Developer",
     "AI/ML & Deep Learning Explorer",
     "Cybersecurity Fundamentals Enthusiast",
     "Smart India Hackathon (SIH 2025) Innovator"
   ],
-  location: "Jaipur, India (Arya College of Engineering & IT)",
+  location: "Jaipur, Rajasthan, India (Arya College)",
   timezone: "Asia/Kolkata",
   email: "aryanjangir0805@gmail.com",
-  github: "https://github.com/aryanjangir",
-  linkedin: "https://linkedin.com/in/aryan-jangir",
+  github: "https://github.com/Aryan-Jangir-01",
+  linkedin: "https://www.linkedin.com/in/aryan-jangir2005",
   twitter: "https://twitter.com",
-  bio: "Third-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur (Graduation 2028). Passionate developer, hackathon enthusiast, and aspiring AI/ML & Cybersecurity professional building intelligent, secure, and user-friendly applications.",
+  bio: "Third-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur (Graduation 2028). Passionate developer, hackathon innovator (SIH 2025), and aspiring AI/ML & Cybersecurity professional building games, intelligent algorithms, and secure web applications.",
   
   aboutHighlights: [
     {
@@ -33,15 +34,15 @@ export const portfolioData: PortfolioData = {
       icon: "Rocket"
     },
     {
-      label: "National Hackathons",
-      value: "SIH 2025",
-      subtext: "Smart India Hackathon Competitor",
+      label: "Academics (Board)",
+      value: "85% / 80%",
+      subtext: "Class XII (85%) • Class X (80%)",
       icon: "Zap"
     },
     {
       label: "Core Specializations",
       value: "AI & Security",
-      subtext: "AI/ML, Web & Cybersecurity",
+      subtext: "AI/ML, Game Dev & Web Security",
       icon: "Brain"
     }
   ],
@@ -99,6 +100,43 @@ export const portfolioData: PortfolioData = {
 
   projects: [
     {
+      id: "kingdom-of-shadows",
+      title: "Kingdom of Shadows: Break the Curse - 2D Action Platformer",
+      description: "Epic 2D dark fantasy action platformer featuring custom physics, boss battles against King Malakor, active skill casting, and an RPG upgrade shrine.",
+      longDescription: "A browser-based 2D dark fantasy action platformer built from scratch with HTML5 Canvas, modern JavaScript (ES6+), and custom 60FPS physics. Players embody a warrior braving cursed realms, rescuing petrified villagers, executing high-speed combat moves (Light Dash, Solar Blast, Divine Shield), trading harvested Soul Gems at the RPG Upgrade Shrine, and defeating the ancient boss Malakor. Includes customizable on-screen touch controls with mobile landscape orientation lock.",
+      category: "Game Dev",
+      tags: ["JavaScript", "HTML5 Canvas", "Game Dev", "CSS3", "Physics", "PWA"],
+      features: [
+        "Custom 60FPS 2D physics engine with platforming, collision detection & lag-buffered health bars",
+        "Active spellcasting system: Light Dash (Shift), Solar Blast (Q), and Divine Protection Sphere (C/X)",
+        "In-game RPG Upgrade Shrine with Soul Gem economy to boost vitality and attack powers",
+        "Multi-stage level progression culminating in an epic multi-phase boss fight against Malakor",
+        "Customizable mobile touch d-pad & draggable controls with landscape orientation lock"
+      ],
+      metrics: "Playable 2D Action RPG in browser",
+      liveUrl: "https://aryan-jangir-01.github.io/Kingdom-of-Shadows/",
+      githubUrl: "https://github.com/Aryan-Jangir-01/Kingdom-of-Shadows",
+      featured: true
+    },
+    {
+      id: "doc-verify",
+      title: "DOC Verify - Certificate Verification Portal",
+      description: "Web-based authentication portal focused on academic and professional certificate verification, credential validation, and tampering prevention.",
+      longDescription: "A dedicated digital credential verification web portal built to authenticate academic and institutional certificates. Provides instant lookup, verified issuer credentials, and tamper-proof verification records for institutions, students, and prospective employers.",
+      category: "Full-Stack",
+      tags: ["React.js", "Web Security", "Verification", "Tailwind CSS", "JavaScript"],
+      features: [
+        "Instant certificate serial verification and issuer validation",
+        "Secure digital credential lookup with verifiable institutional metadata",
+        "Tamper-detection and status verification for institutional certificates",
+        "Streamlined, responsive UI for quick administrative reviews"
+      ],
+      metrics: "Deployed certificate validation system",
+      liveUrl: "https://xking8544-droid.github.io/DOC_verify/#home",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
+      featured: true
+    },
+    {
       id: "sih-internship-ai",
       title: "AI-Based Internship Recommendation Engine (SIH 2025)",
       description: "Smart India Hackathon 2025 innovation matching students with ideal internship opportunities using algorithmic profile analysis.",
@@ -112,26 +150,44 @@ export const portfolioData: PortfolioData = {
         "Developed, engineered, and pitched for Smart India Hackathon (SIH 2025)"
       ],
       metrics: "Built for Smart India Hackathon (SIH 2025)",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
       featured: true
     },
     {
       id: "cryptopay",
-      title: "CryptoPay - Secure Digital Asset Payment Platform",
-      description: "A secure, modern cryptocurrency transaction and payment platform featuring encrypted flows and real-time wallet tracking.",
-      longDescription: "CryptoPay provides an encrypted environment for digital asset transfers and payment gateway operations. Designed with cybersecurity best practices, multi-layer verification, and live price telemetry feeds.",
+      title: "CryptoPay - Freelance Cryptocurrency Payment Platform",
+      description: "A web platform enabling freelancers to receive international payments using cryptocurrency with Firebase backend integration.",
+      longDescription: "Built specifically to help freelancers receive seamless, low-fee international payments via cryptocurrency. Integrates Firebase backend services, encrypted transaction records, and real-time wallet tracking with cyber-defense practices.",
       category: "Full-Stack",
-      tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Cybersecurity", "Tailwind CSS"],
+      tags: ["React.js", "Firebase", "Web3", "JavaScript", "Cybersecurity", "Tailwind CSS"],
       features: [
-        "End-to-end encrypted transaction validation and secure session handling",
-        "Real-time digital currency conversion and portfolio balance telemetry",
-        "Protected authentication pipelines preventing common web vulnerabilities",
-        "Futuristic dark cyber dashboard with instant transfer logs"
+        "Web project focused on helping freelancers receive international payments using cryptocurrency",
+        "Integrated Firebase backend services for realtime authentication and database sync",
+        "Protected payment workflows preventing common digital transaction vulnerabilities",
+        "Futuristic dark cyber dashboard with instant transfer telemetry"
       ],
-      metrics: "Built with security-first architecture",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
+      metrics: "Built with Firebase & crypto transaction workflows",
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
+      featured: true
+    },
+    {
+      id: "noteshare",
+      title: "NoteShare - Collaborative Academic Resource Hub",
+      description: "A C-based student project and academic web platform focused on organizing, uploading, and sharing educational notes.",
+      longDescription: "Created to eliminate fragmented study resources in college. Enables students from Arya College and beyond to upload lecture notes, previous year question papers (PYQs), and reference guides with peer verification.",
+      category: "Full-Stack",
+      tags: ["C / C++", "React.js", "Node.js", "MongoDB", "Tailwind CSS"],
+      features: [
+        "C-based student project architecture focused on organizing educational notes",
+        "Subject, department, and semester-wise categorized document repository",
+        "Peer verification, rating, and upvote system for resource quality",
+        "Fast search and categorization for quick exam preparation"
+      ],
+      metrics: "Empowering collaborative student learning",
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
       featured: true
     },
     {
@@ -148,27 +204,9 @@ export const portfolioData: PortfolioData = {
         "Strict client-side privacy and encrypted personal data storage"
       ],
       metrics: "AI-driven wellness and sentiment analysis",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
-      featured: true
-    },
-    {
-      id: "noteshare",
-      title: "NoteShare - Collaborative Academic Resource Hub",
-      description: "A collaborative academic repository enabling students to organize, upload, tag, and discover lecture notes and study material.",
-      longDescription: "Created to eliminate fragmented study resources in college. Enables students from Arya College and beyond to upload lecture notes, previous year question papers (PYQs), and reference guides with peer verification.",
-      category: "Full-Stack",
-      tags: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-      features: [
-        "Subject, department, and semester-wise categorized document repository",
-        "Peer verification, rating, and upvote system for resource quality",
-        "Instant in-browser document previews and high-speed downloads",
-        "Role-based contributor badges recognizing top academic sharers"
-      ],
-      metrics: "Empowering collaborative student learning",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
-      featured: true
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
+      featured: false
     },
     {
       id: "face-age-analysis",
@@ -184,8 +222,8 @@ export const portfolioData: PortfolioData = {
         "Analytics dashboard visualizing detection probabilities and confidence"
       ],
       metrics: "Real-time facial feature inference",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
       featured: false
     },
     {
@@ -202,8 +240,8 @@ export const portfolioData: PortfolioData = {
         "Energy-efficient low-power sleep cycles for prolonged battery endurance"
       ],
       metrics: "Hardware-level automated environmental control",
-      liveUrl: "https://github.com/aryanjangir",
-      githubUrl: "https://github.com/aryanjangir",
+      liveUrl: "https://github.com/Aryan-Jangir-01",
+      githubUrl: "https://github.com/Aryan-Jangir-01",
       featured: false
     }
   ],
@@ -217,9 +255,10 @@ export const portfolioData: PortfolioData = {
       location: "Jaipur, Rajasthan, India",
       type: "Education",
       description: [
-        "Pursuing specialized engineering degree in Artificial Intelligence and Data Science.",
-        "Deep coursework across Data Structures & Algorithms, Machine Learning, Database Systems, Computer Networks, and Cybersecurity fundamentals.",
-        "Active leader and builder in college tech events, hackathons, and software projects."
+        "Specializing in Artificial Intelligence and Data Science with hands-on focus on AI/ML models, system design, and algorithms.",
+        "Academic Track Record: Senior Secondary (Class XII) — 85% | Secondary (Class X) — 80%.",
+        "Core Coursework: Data Structures & Algorithms, Machine Learning, Database Systems, Computer Networks, and Cybersecurity fundamentals.",
+        "Active builder and participant in national hackathons and developer initiatives."
       ],
       technologies: ["Python", "C/C++", "Java", "AI/ML", "SQL", "Linux", "Data Structures"],
       link: "https://www.aryacollege.in/"

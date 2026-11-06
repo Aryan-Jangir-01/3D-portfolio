@@ -1,11 +1,13 @@
 export type ThemeMode = 'neon' | 'cyberpunk' | 'matrix' | 'synthwave' | 'obsidian';
 
+export type ProjectCategory = 'Full-Stack' | 'AI / ML' | 'Game Dev' | 'Systems / Web3' | 'Frontend' | 'Mobile';
+
 export interface Project {
   id: string;
   title: string;
   description: string;
   longDescription?: string;
-  category: 'Full-Stack' | 'AI / ML' | 'Systems / Web3' | 'Frontend' | 'Mobile';
+  category: ProjectCategory;
   tags: string[];
   features: string[];
   metrics?: string;

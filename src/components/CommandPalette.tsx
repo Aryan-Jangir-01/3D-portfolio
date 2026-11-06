@@ -12,7 +12,8 @@ import {
   Briefcase, 
   Layers,
   ArrowRight,
-  Eye
+  Eye,
+  CheckCircle2
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useTheme } from '../context/ThemeContext';
@@ -24,6 +25,7 @@ interface CommandPaletteProps {
   onClose: () => void;
   onOpenTerminal: () => void;
   onReplayLoader?: () => void;
+  onOpenResume?: () => void;
 }
 
 interface CommandItem {
@@ -39,7 +41,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   isOpen, 
   onClose, 
   onOpenTerminal,
-  onReplayLoader 
+  onReplayLoader,
+  onOpenResume 
 }) => {
   const { setTheme, availableThemes, themeConfig } = useTheme();
   const [query, setQuery] = useState('');
@@ -156,13 +159,41 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'act-resume',
-      title: 'Download Resume / CV',
-      subtitle: 'Save a PDF copy of my latest credentials',
+      title: 'View & Download Resume / CV',
+      subtitle: 'Open verified interactive CV & official PDF (Class XII: 85%, X: 80%)',
       category: 'Actions',
-      icon: <FileText className="w-4 h-4 text-amber-400" />,
+      icon: <FileText className="w-4 h-4 text-cyan-400" />,
+      action: () => {
+        sound.playClick();
+        onClose();
+        if (onOpenResume) {
+          onOpenResume();
+        } else {
+          window.open('/aryan_jangir_resume.pdf', '_blank');
+        }
+      },
+    },
+    {
+      id: 'act-play-kingdom',
+      title: 'Play Kingdom of Shadows (2D Action Game)',
+      subtitle: 'Break the curse: 2D dark fantasy action platformer live game',
+      category: 'Actions',
+      icon: <Sparkles className="w-4 h-4 text-purple-400" />,
       action: () => {
         sound.playSuccess();
-        window.open(`mailto:${portfolioData.email}?subject=Resume Request - Aryan Jangir`, '_blank');
+        window.open('https://aryan-jangir-01.github.io/Kingdom-of-Shadows/', '_blank');
+        onClose();
+      },
+    },
+    {
+      id: 'act-doc-verify',
+      title: 'Open DOC Verify Portal',
+      subtitle: 'Certificate verification & authentication platform',
+      category: 'Actions',
+      icon: <CheckCircle2 className="w-4 h-4 text-emerald-400" />,
+      action: () => {
+        sound.playClick();
+        window.open('https://xking8544-droid.github.io/DOC_verify/#home', '_blank');
         onClose();
       },
     },

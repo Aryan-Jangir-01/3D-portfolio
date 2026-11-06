@@ -200,14 +200,21 @@ Direct Email: ${portfolioData.email}
             id: Math.random().toString(),
             type: 'output',
             text: `------------------------------------------------------------
-RESUME SUMMARY: ARYAN JANGIR
-Title: Full-Stack Engineer & Creative Developer
+OFFICIAL RESUME SUMMARY: ARYAN JANGIR
+Specialization: B.Tech in AI & Data Science (Arya College, Jaipur • 2028)
+Academics: Senior Secondary (XII): 85% | Secondary (X): 80%
 Email: ${portfolioData.email}
-Highlights:
-- 3+ years engineering scalable web architectures
-- 20+ production web applications shipped
-- Proficiencies in React, Next.js, Node.js, TypeScript, Python, AWS
-- 99+ Core Web Vitals benchmark mindset
+GitHub: ${portfolioData.github}
+LinkedIn: ${portfolioData.linkedin}
+
+KEY PROJECTS:
+1. Kingdom of Shadows - 2D Action Platformer (aryan-jangir-01.github.io/Kingdom-of-Shadows/)
+2. DOC Verify - Certificate Verification Portal (xking8544-droid.github.io/DOC_verify/#home)
+3. SIH 2025 - AI Internship Recommendation Engine
+4. CryptoPay - Freelance Cryptocurrency Payment Platform
+5. NoteShare - Educational Notes-Sharing Platform
+
+Download full verified PDF: /aryan_jangir_resume.pdf
 ------------------------------------------------------------`,
           });
         } else {

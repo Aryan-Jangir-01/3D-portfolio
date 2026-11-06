@@ -55,20 +55,32 @@ export const AryanBot: React.FC<AryanBotProps> = ({ isOpen, onClose, onOpen }) =
   const generateAnswer = (query: string): string => {
     const q = query.toLowerCase();
 
-    if (q.includes('college') || q.includes('education') || q.includes('degree') || q.includes('study') || q.includes('arya')) {
-      return `Aryan is a 3rd-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur, with an expected graduation in 2028.`;
+    if (q.includes('college') || q.includes('education') || q.includes('degree') || q.includes('study') || q.includes('arya') || q.includes('score') || q.includes('marks') || q.includes('percent')) {
+      return `Aryan is a 3rd-year B.Tech student specializing in Artificial Intelligence and Data Science at Arya College of Engineering & IT, Jaipur (Expected: 2028).\nAcademic Performance:\n• Class XII: 85%\n• Class X: 80%`;
+    }
+
+    if (q.includes('resume') || q.includes('cv') || q.includes('document')) {
+      return `You can view and download Aryan's verified Resume directly from the portfolio! Click "Resume" on the navbar, or download it at /aryan_jangir_resume.pdf.`;
+    }
+
+    if (q.includes('kingdom') || q.includes('shadow') || q.includes('game')) {
+      return `Aryan recently built "Kingdom of Shadows: Break the Curse" — an epic 2D dark fantasy action platformer with custom physics, spell casting (Light Dash, Solar Blast, Shield), and Malakor boss fight! Play it live here: https://aryan-jangir-01.github.io/Kingdom-of-Shadows/`;
+    }
+
+    if (q.includes('doc verify') || q.includes('certificate')) {
+      return `Aryan engineered "DOC Verify" — a dedicated certificate verification web portal for academic credential validation and tamper-detection. Check it out here: https://xking8544-droid.github.io/DOC_verify/#home`;
     }
 
     if (q.includes('stack') || q.includes('technolog') || q.includes('skills') || q.includes('language')) {
-      return `Aryan's technical arsenal includes:\n• Languages: Python, C, C++, Java, JavaScript\n• Frontend: React.js, Tailwind CSS, HTML5, CSS3\n• Backend & APIs: FastAPI, Node.js, Express.js\n• Databases: MongoDB, Firebase, SQL\n• Domains & Tools: AI/ML, Deep Learning, Cybersecurity fundamentals, Git, GitHub, Linux, Arduino IoT.`;
+      return `Aryan's technical arsenal includes:\n• Languages: Python, C, C++, Java, JavaScript\n• Frontend: HTML, CSS, React.js, Tailwind CSS\n• Backend & APIs: FastAPI, Node.js, Express.js\n• Databases: MongoDB, Firebase, SQL\n• Domains & Tools: AI/ML, Game Dev, Cybersecurity, Git, GitHub, Linux, Arduino IoT.`;
     }
 
     if (q.includes('hire') || q.includes('why') || q.includes('about') || q.includes('goal')) {
-      return `Aryan Jangir is an ambitious AI & Data Science engineer from Arya College, Jaipur (Class of 2028). He is passionate about building innovative, secure, and intelligent solutions, competing in national hackathons like SIH 2025, and eager to contribute to high-impact software engineering roles.`;
+      return `Aryan Jangir is an ambitious AI & Data Science engineer from Arya College, Jaipur (Class of 2028). With an 85% score in Class XII and real experience in SIH 2025, game development, and full-stack systems, he is eager to contribute to impactful software engineering and AI/ML internships.`;
     }
 
     if (q.includes('project') || q.includes('work') || q.includes('sih') || q.includes('hackathon')) {
-      return `Aryan has engineered several impressive projects:\n1. 🏆 AI Internship Recommendation Engine (Smart India Hackathon - SIH 2025)\n2. 🔐 CryptoPay - Secure digital cryptocurrency payment platform\n3. 🧠 MindEase - AI mental wellness & sentiment analysis companion\n4. 📚 NoteShare - Collaborative student academic repository\n5. 👁️ Face Age Analysis - Computer Vision CNN deep learning model\n6. 🌱 Arduino Soil Moisture Detection - Smart agricultural IoT system\nExplore the Projects section for full interactive details!`;
+      return `Aryan has built several standout projects:\n1. ⚔️ Kingdom of Shadows - 2D Action Platformer Game (Live: aryan-jangir-01.github.io/Kingdom-of-Shadows/)\n2. 📜 DOC Verify - Certificate Verification Portal (Live: xking8544-droid.github.io/DOC_verify/#home)\n3. 🏆 AI Internship Recommendation Engine (Smart India Hackathon - SIH 2025)\n4. 🔐 CryptoPay - Freelance Cryptocurrency Payment Platform\n5. 📚 NoteShare - Collaborative Student Academic Repository\n6. 🧠 MindEase - AI Mental Health Companion\n7. 👁️ Face Age Analysis - Computer Vision CNN\n8. 🌱 Arduino Soil Moisture System - Smart Agricultural IoT`;
     }
 
     if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('hire') || q.includes('call')) {

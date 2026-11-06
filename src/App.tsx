@@ -15,12 +15,14 @@ import { TerminalModal } from './components/TerminalModal';
 import { CommandPalette } from './components/CommandPalette';
 import { AryanBot } from './components/AryanBot';
 import { ParticleLoader } from './components/ParticleLoader';
+import { ResumeModal } from './components/ResumeModal';
 
 export const AppContent: React.FC = () => {
   const [showLoader, setShowLoader] = useState(true);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [botOpen, setBotOpen] = useState(false);
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen text-slate-100 cyber-grid overflow-x-hidden">
@@ -41,6 +43,7 @@ export const AppContent: React.FC = () => {
         onOpenTerminal={() => setTerminalOpen(true)}
         onOpenCommandPalette={() => setPaletteOpen(true)}
         onReplayLoader={() => setShowLoader(true)}
+        onOpenResume={() => setResumeOpen(true)}
       />
 
       {/* Main Sections */}
@@ -48,8 +51,9 @@ export const AppContent: React.FC = () => {
         <Hero 
           onOpenTerminal={() => setTerminalOpen(true)}
           onOpenBot={() => setBotOpen(true)}
+          onOpenResume={() => setResumeOpen(true)}
         />
-        <About />
+        <About onOpenResume={() => setResumeOpen(true)} />
         <Skills />
         <Projects />
         <Experience />
@@ -78,6 +82,7 @@ export const AppContent: React.FC = () => {
         onClose={() => setPaletteOpen(false)}
         onOpenTerminal={() => setTerminalOpen(true)}
         onReplayLoader={() => setShowLoader(true)}
+        onOpenResume={() => setResumeOpen(true)}
       />
 
       {/* AI Assistant Widget (AryanBot) */}
@@ -85,6 +90,12 @@ export const AppContent: React.FC = () => {
         isOpen={botOpen}
         onClose={() => setBotOpen(false)}
         onOpen={() => setBotOpen(true)}
+      />
+
+      {/* Verified Curriculum Vitae (Resume) Modal */}
+      <ResumeModal 
+        isOpen={resumeOpen}
+        onClose={() => setResumeOpen(false)}
       />
     </div>
   );

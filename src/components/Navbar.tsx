@@ -9,7 +9,8 @@ import {
   Command, 
   Sparkles,
   Clock,
-  Eye
+  Eye,
+  FileText
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { sound } from '../utils/sound';
@@ -18,9 +19,10 @@ interface NavbarProps {
   onOpenTerminal: () => void;
   onOpenCommandPalette: () => void;
   onReplayLoader?: () => void;
+  onOpenResume?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPalette, onReplayLoader }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPalette, onReplayLoader, onOpenResume }) => {
   const { theme, setTheme, availableThemes, themeConfig } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [soundActive, setSoundActive] = useState(sound.isEnabled());
@@ -143,6 +145,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
             <span>{currentTime || 'IST'}</span>
           </div>
 
+          {/* Resume Viewer Trigger */}
+          {onOpenResume && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenResume();
+              }}
+              onMouseEnter={() => sound.playHover()}
+              title="View & Download Verified Resume / CV"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono transition-all shadow-sm hover:scale-105 active:scale-95"
+              style={{
+                backgroundColor: `${themeConfig.primary}15`,
+                borderColor: `${themeConfig.primary}50`,
+                color: themeConfig.primary
+              }}
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Resume</span>
+            </button>
+          )}
+
           {/* Command Palette Trigger */}
           <button
             onClick={() => {
@@ -259,6 +282,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
                 {link.label}
               </a>
             ))}
+
+            {onOpenResume && (
+              <button
+                onClick={() => {
+                  sound.playClick();
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+                className="px-4 py-2.5 rounded-lg text-sm text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 text-left transition-colors flex items-center gap-2"
+              >
+                <FileText className="w-4 h-4" />
+                <span>View & Download Resume / CV</span>
+              </button>
+            )}
 
             {onReplayLoader && (
               <button

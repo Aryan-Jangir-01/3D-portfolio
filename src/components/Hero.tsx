@@ -15,9 +15,10 @@ import { sound } from '../utils/sound';
 interface HeroProps {
   onOpenTerminal: () => void;
   onOpenBot: () => void;
+  onOpenResume?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot, onOpenResume }) => {
   const { themeConfig } = useTheme();
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -138,6 +139,22 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot }) => {
             <TerminalIcon className="w-4 h-4 text-emerald-400" />
             <span>Launch CLI</span>
           </button>
+
+          {/* Resume Modal Trigger */}
+          {onOpenResume && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenResume();
+              }}
+              onMouseEnter={() => sound.playHover()}
+              className="px-5 py-3 rounded-xl font-medium text-sm flex items-center gap-2 glass-panel border hover:bg-white/10 text-white transition-all duration-200"
+              style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}
+            >
+              <FileDown className="w-4 h-4 text-cyan-400" />
+              <span>Resume / CV</span>
+            </button>
+          )}
 
           {/* AI Assistant Chat Button */}
           <button

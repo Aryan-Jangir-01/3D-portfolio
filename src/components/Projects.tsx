@@ -135,7 +135,7 @@ export const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
-  const categories = ['All', 'Full-Stack', 'AI / ML', 'Systems / Web3'];
+  const categories = ['All', 'Full-Stack', 'Game Dev', 'AI / ML', 'Systems / Web3'];
 
   const filteredProjects = portfolioData.projects.filter((p) => {
     if (selectedCategory === 'All') return true;

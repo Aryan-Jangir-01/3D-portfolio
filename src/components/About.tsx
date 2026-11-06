@@ -12,7 +12,11 @@ import { portfolioData } from '../data/portfolioData';
 import { useTheme } from '../context/ThemeContext';
 import { sound } from '../utils/sound';
 
-export const About: React.FC = () => {
+interface AboutProps {
+  onOpenResume?: () => void;
+}
+
+export const About: React.FC<AboutProps> = ({ onOpenResume }) => {
   const { themeConfig } = useTheme();
 
   const handleResumeClick = () => {
@@ -22,7 +26,11 @@ export const About: React.FC = () => {
       spread: 60,
       origin: { y: 0.7 },
     });
-    window.open(`mailto:${portfolioData.email}?subject=Resume Request - Aryan Jangir`, '_blank');
+    if (onOpenResume) {
+      onOpenResume();
+    } else {
+      window.open('/aryan_jangir_resume.pdf', '_blank');
+    }
   };
 
   return (
