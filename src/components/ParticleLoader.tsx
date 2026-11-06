@@ -80,18 +80,21 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
   useEffect(() => {
     if (!isOpen) return;
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const scale = isMobile ? 0.72 : 1.0;
+
     const particles: Particle[] = ARYAN_FACE_MESH.map((pt) => ({
-      baseX: pt.x,
-      baseY: pt.y,
-      baseZ: pt.z,
+      baseX: pt.x * scale,
+      baseY: pt.y * scale,
+      baseZ: pt.z * scale,
       // Start in subtle assembly motion
-      x: pt.x + (Math.random() - 0.5) * 80,
-      y: pt.y + (Math.random() - 0.5) * 80,
-      z: pt.z + (Math.random() - 0.5) * 60,
+      x: (pt.x + (Math.random() - 0.5) * 60) * scale,
+      y: (pt.y + (Math.random() - 0.5) * 60) * scale,
+      z: (pt.z + (Math.random() - 0.5) * 50) * scale,
       vx: 0,
       vy: 0,
       vz: 0,
-      size: pt.s,
+      size: isMobile ? Math.max(0.85, pt.s * 0.8) : pt.s,
       color: pt.c,
       origColor: pt.c,
       alpha: 0,
@@ -109,8 +112,9 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const width = 440;
-    const height = 540;
+    const isMobile = window.innerWidth < 640;
+    const width = isMobile ? Math.min(window.innerWidth - 32, 330) : 440;
+    const height = isMobile ? Math.min(window.innerHeight * 0.44, 360) : 540;
     const dpr = Math.min(2, window.devicePixelRatio || 1);
 
     canvas.width = width * dpr;
@@ -350,20 +354,20 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
       }`}
     >
       {/* Top Header Navigation Bar */}
-      <div className="absolute top-6 left-0 right-0 px-6 sm:px-12 flex items-center justify-between z-40">
-        <div className="flex items-center gap-2.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping" />
-          <span className="text-xs font-mono tracking-widest text-zinc-300 uppercase font-semibold">
-            Aryan Jangir • 3D Hologram Mesh
+      <div className="absolute top-4 sm:top-6 left-0 right-0 px-4 sm:px-12 flex items-center justify-between z-40">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+          <span className="text-[11px] sm:text-xs font-mono tracking-widest text-zinc-300 uppercase font-semibold truncate max-w-[170px] xs:max-w-none">
+            Aryan Jangir • 3D Mesh
           </span>
         </div>
 
         <button
           onClick={handleEnterPortfolio}
           onMouseEnter={() => sound.playHover()}
-          className="text-xs font-mono text-zinc-300 hover:text-white px-4 py-1.5 rounded-full glass-panel border border-white/10 hover:border-white/30 transition-all flex items-center gap-1.5 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+          className="text-xs font-mono text-cyan-300 hover:text-white px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 transition-all flex items-center gap-1.5 shadow-lg active:scale-95 cursor-pointer font-semibold"
         >
-          <span>Skip to Portfolio</span>
+          <span>Skip to Site</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -443,12 +447,12 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
           DEVELOPER
         </div>
 
-        {/* Center Stage Container (440 x 540) */}
-        <div className="relative w-[340px] sm:w-[440px] h-[440px] sm:h-[540px] flex items-center justify-center">
+        {/* Center Stage Container */}
+        <div className="relative w-[300px] xs:w-[330px] sm:w-[440px] h-[320px] xs:h-[360px] sm:h-[540px] flex items-center justify-center">
           
           {/* Ambient Volumetric Radial Glow */}
           <div 
-            className="absolute inset-0 rounded-full blur-[100px] pointer-events-none transition-all duration-700"
+            className="absolute inset-0 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none transition-all duration-700"
             style={{
               backgroundColor: '#ff2a5f',
               opacity: 0.18,
@@ -458,18 +462,18 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
           {/* 3D Holographic Particle Canvas (100% Pure Dots) */}
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing z-20"
+            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing z-20 touch-none"
           />
         </div>
 
         {/* Interactive Controls & CTA Button Group */}
-        <div className="relative z-30 mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div className="relative z-30 mt-3 sm:mt-6 flex flex-col xs:flex-row items-center justify-center gap-2.5 sm:gap-3 w-full px-5 max-w-sm sm:max-w-none">
           {/* Shockwave Particle Pulse Button */}
           <button
             onClick={triggerShockwave}
             onMouseEnter={() => sound.playHover()}
             disabled={isShockwave}
-            className="px-6 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
+            className="w-full xs:w-auto px-5 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
             style={{
               borderColor: '#ff2a5f',
               boxShadow: '0 0 20px rgba(255, 42, 95, 0.35)',
@@ -484,7 +488,7 @@ export const ParticleLoader: React.FC<ParticleLoaderProps> = ({ onComplete, isOp
           <button
             onClick={handleEnterPortfolio}
             onMouseEnter={() => sound.playHover()}
-            className="px-8 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 group cursor-pointer"
+            className="w-full xs:w-auto px-7 py-2.5 rounded-full font-mono text-xs sm:text-sm font-semibold tracking-wider text-white glass-panel border shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
             style={{
               borderColor: '#38bdf8',
               boxShadow: '0 0 25px rgba(56, 189, 248, 0.45)',

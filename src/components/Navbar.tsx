@@ -188,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
             }}
             onMouseEnter={() => sound.playHover()}
             title="Open Interactive Terminal"
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-all"
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 hover:text-white transition-all"
           >
             <Terminal className="w-4 h-4 text-emerald-400" />
             <span className="hidden sm:inline font-mono">CLI</span>
@@ -199,7 +199,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal, onOpenCommandPal
             onClick={handleSoundToggle}
             onMouseEnter={() => sound.playHover()}
             title={soundActive ? 'Mute Sound FX' : 'Enable Sound FX'}
-            className="p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all"
+            className="hidden sm:block p-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white transition-all"
           >
             {soundActive ? (
               <Volume2 className="w-4 h-4 text-cyan-400" />

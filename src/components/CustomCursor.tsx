@@ -1,92 +1,126 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
 export const CustomCursor: React.FC = () => {
-  const [pos, setPos] = useState({ x: -100, y: -100 });
-  const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
+  const { themeConfig } = useTheme();
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const { themeConfig } = useTheme();
+
+  const dotRef = useRef<HTMLDivElement>(null);
+  const ringRef = useRef<HTMLDivElement>(null);
+
+  const mousePos = useRef({ x: -100, y: -100 });
+  const ringPos = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
-    // Disable on touch devices
-    if (window.matchMedia('(pointer: coarse)').matches) {
+    // Strictly disable on touch / mobile devices (phones, tablets, touchscreens)
+    const checkTouch = () => {
+      return (
+        typeof window !== 'undefined' &&
+        ('ontouchstart' in window ||
+          navigator.maxTouchPoints > 0 ||
+          window.matchMedia('(pointer: coarse)').matches)
+      );
+    };
+
+    if (checkTouch()) {
+      setIsTouchDevice(true);
       return;
     }
 
     const onMouseMove = (e: MouseEvent) => {
-      setPos({ x: e.clientX, y: e.clientY });
+      mousePos.current.x = e.clientX;
+      mousePos.current.y = e.clientY;
       setIsVisible(true);
     };
 
     const onMouseDown = () => setIsClicking(true);
     const onMouseUp = () => setIsClicking(false);
     const onMouseLeave = () => setIsVisible(false);
+    const onMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', onMouseMove);
+    const onMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const interactive = target.closest(
+        'button, a, input, textarea, select, [role="button"], .interactive, .cursor-pointer'
+      );
+      setIsHovered(!!interactive);
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mouseup', onMouseUp);
     document.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener('mouseenter', onMouseEnter);
+    window.addEventListener('mouseover', onMouseOver, { passive: true });
 
-    const checkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement | null;
-      if (!target) return;
-      const isInteractive = target.closest('button, a, input, textarea, select, [role="button"], .interactive');
-      setIsHovered(!!isInteractive);
-    };
-
-    window.addEventListener('mouseover', checkHover);
-
-    // Smooth trailing ring loop
+    // Butter-smooth 120fps hardware-accelerated requestAnimationFrame loop
     let animId: number;
-    const updateTrailing = () => {
-      setTrailingPos((prev) => ({
-        x: prev.x + (pos.x - prev.x) * 0.22,
-        y: prev.y + (pos.y - prev.y) * 0.22,
-      }));
-      animId = requestAnimationFrame(updateTrailing);
+    const loop = () => {
+      // Smooth interpolation for the outer trailing aura ring
+      ringPos.current.x += (mousePos.current.x - ringPos.current.x) * 0.22;
+      ringPos.current.y += (mousePos.current.y - ringPos.current.y) * 0.22;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${mousePos.current.x - 4}px, ${mousePos.current.y - 4}px, 0)`;
+      }
+
+      if (ringRef.current) {
+        const offset = isHovered ? 24 : 15;
+        ringRef.current.style.transform = `translate3d(${ringPos.current.x - offset}px, ${ringPos.current.y - offset}px, 0)`;
+      }
+
+      animId = requestAnimationFrame(loop);
     };
-    animId = requestAnimationFrame(updateTrailing);
+
+    animId = requestAnimationFrame(loop);
 
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
       document.removeEventListener('mouseleave', onMouseLeave);
-      window.removeEventListener('mouseover', checkHover);
+      document.removeEventListener('mouseenter', onMouseEnter);
+      window.removeEventListener('mouseover', onMouseOver);
       cancelAnimationFrame(animId);
     };
-  }, [pos.x, pos.y]);
+  }, [isHovered]);
 
-  if (!isVisible) return null;
+  // Never render on mobile/touch screens or when cursor is off-window
+  if (isTouchDevice || !isVisible) return null;
 
   return (
-    <>
-      {/* Center point */}
+    <div className="hidden md:block pointer-events-none">
+      {/* High-precision center dot */}
       <div
+        ref={dotRef}
         className="fixed top-0 left-0 pointer-events-none z-50 rounded-full transition-transform duration-75"
         style={{
           width: '8px',
           height: '8px',
-          transform: `translate3d(${pos.x - 4}px, ${pos.y - 4}px, 0) scale(${isClicking ? 0.7 : isHovered ? 1.5 : 1})`,
           backgroundColor: themeConfig.primary,
           boxShadow: `0 0 10px ${themeConfig.glow}`,
+          transform: 'translate3d(-100px, -100px, 0)',
         }}
       />
-      {/* Outer trailing aura */}
+      {/* Fluid glowing aura ring */}
       <div
+        ref={ringRef}
         className="fixed top-0 left-0 pointer-events-none z-50 rounded-full transition-all duration-150 ease-out"
         style={{
-          width: isHovered ? '48px' : '28px',
-          height: isHovered ? '48px' : '28px',
-          transform: `translate3d(${trailingPos.x - (isHovered ? 24 : 14)}px, ${trailingPos.y - (isHovered ? 24 : 14)}px, 0)`,
+          width: isHovered ? '48px' : '30px',
+          height: isHovered ? '48px' : '30px',
           border: `1.5px solid ${themeConfig.primary}`,
-          backgroundColor: isHovered ? `${themeConfig.primary}15` : 'transparent',
-          boxShadow: isHovered ? `0 0 16px ${themeConfig.glow}` : 'none',
+          backgroundColor: isHovered ? `${themeConfig.primary}18` : 'transparent',
+          boxShadow: isHovered ? `0 0 18px ${themeConfig.glow}` : 'none',
+          transform: 'translate3d(-100px, -100px, 0)',
         }}
       />
-    </>
+    </div>
   );
 };
 
+export default CustomCursor;

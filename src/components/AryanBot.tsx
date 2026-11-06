@@ -154,7 +154,7 @@ export const AryanBot: React.FC<AryanBotProps> = ({ isOpen, onClose, onOpen }) =
       {/* Chat Drawer Window */}
       {isOpen && (
         <div 
-          className="fixed bottom-6 right-6 z-50 w-[92vw] sm:w-[380px] h-[520px] rounded-3xl glass-panel shadow-2xl border flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-200"
+          className="fixed bottom-4 sm:bottom-6 right-3 sm:right-6 left-3 sm:left-auto w-auto sm:w-[380px] h-[480px] max-h-[82vh] rounded-3xl glass-panel shadow-2xl border flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-200"
           style={{ borderColor: `${themeConfig.primary}60` }}
         >
           {/* Header */}

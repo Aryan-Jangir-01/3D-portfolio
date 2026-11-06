@@ -81,7 +81,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot, onOpenRes
         </div>
 
         {/* Hero Main Heading */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-display text-white max-w-4xl leading-[1.15]">
+        <h1 className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight font-display text-white max-w-4xl leading-[1.18]">
           Hi, I'm <span 
             className="text-glow underline decoration-wavy decoration-2"
             style={{ 
@@ -94,7 +94,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTerminal, onOpenBot, onOpenRes
         </h1>
 
         {/* Dynamic Typewriter Subheading */}
-        <div className="h-12 sm:h-14 mt-4 flex items-center justify-center font-mono text-xl sm:text-2xl md:text-3xl font-semibold">
+        <div className="min-h-12 sm:h-14 mt-4 flex items-center justify-center font-mono text-base xs:text-xl sm:text-2xl md:text-3xl font-semibold text-center">
           <span className="text-zinc-400 mr-2">&gt;</span>
           <span className="text-white font-mono">{displayText}</span>
           <span 
